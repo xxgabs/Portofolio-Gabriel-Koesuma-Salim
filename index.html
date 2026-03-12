@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gabriel Koesuma Salim | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: 'Orbitron', sans-serif;
+background: #0b0f1a;
+color: #ffffff;
+line-height: 1.6;
+scroll-behavior: smooth;
+overflow-x: hidden;
+}
+
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+background:
+linear-gradient(rgba(0,224,255,0.08) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,224,255,0.08) 1px, transparent 1px);
+background-size: 60px 60px;
+z-index: -1;
+}
+
+/* Navigation */
+
+nav {
+position: fixed;
+top: 30px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 40px;
+z-index: 100;
+background: rgba(15, 20, 40, 0.7);
+padding: 14px 40px;
+border-radius: 40px;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(0,224,255,0.3);
+}
+
+nav a {
+color: #c9f7ff;
+font-size: 1rem;
+letter-spacing: 2px;
+transition: color 0.3s, text-shadow 0.3s;
+text-decoration:none;
+}
+
+nav a:hover {
+color: #00e0ff;
+text-shadow: 0 0 8px rgba(0,224,255,0.8);
+}
+
+/* Header */
+
+header {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+background:
+radial-gradient(circle at center, rgba(0,224,255,0.15), transparent 60%);
+}
+
+header h1 {
+font-size: 3.2rem;
+font-weight: 700;
+letter-spacing: 4px;
+}
+
+header p {
+color: #d0faff;
+max-width: 800px;
+font-size: 0.95rem;
+letter-spacing: 1px;
+}
+
+.about-container {
+display: grid;
+grid-template-columns: 1.2fr 0.8fr;
+gap: 60px;
+align-items: center;
+}
+
+.about-image {
+display: flex;
+justify-content: center;
+}
+
+.tech-frame {
+position: relative;
+padding: 12px;
+border-radius: 20px;
+background: linear-gradient(135deg, #00e0ff, transparent 60%);
+box-shadow: 0 0 40px rgba(0,224,255,0.35);
+}
+
+.tech-frame::before {
+content: "";
+position: absolute;
+inset: 4px;
+border-radius: 16px;
+border: 1px dashed rgba(0,224,255,0.6);
+}
+
+.tech-frame img {
+width: 100%;
+max-width: 300px;
+border-radius: 14px;
+display: block;
+filter: grayscale(30%) contrast(110%);
+}
+
+@media (max-width: 900px) {
+.about-container {
+grid-template-columns: 1fr;
+gap: 40px;
+}
+}
+
+section {
+padding: 110px 10%;
+opacity: 0;
+transform: translateY(40px);
+transition: 0.9s ease;
+}
+
+section.show {
+opacity: 1;
+transform: translateY(0);
+}
+
+h2 {
+font-size: 2.2rem;
+margin-bottom: 40px;
+letter-spacing: 3px;
+position: relative;
+}
+
+h2::after {
+content: "";
+width: 80px;
+height: 3px;
+background: linear-gradient(90deg, #00e0ff, transparent);
+position: absolute;
+bottom: -12px;
+left: 0;
+}
+
+p {
+color: #d0faff;
+max-width: 800px;
+}
+
+.skills, .projects {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+gap: 30px;
+}
+
+.card {
+background: rgba(20, 30, 60, 0.8);
+padding: 28px;
+border-radius: 18px;
+border: 1px solid rgba(0,224,255,0.25);
+transition: transform 0.4s, box-shadow 0.4s;
+overflow: hidden;
+}
+
+.card:hover {
+transform: translateY(-12px);
+box-shadow: 0 0 25px rgba(0,224,255,0.35);
+}
+
+footer {
+text-align: center;
+padding: 50px;
+background: #070b14;
+color: #7fdfff;
+letter-spacing: 2px;
+}
+
+/* Project image */
+
+.projects .card img {
+width: 100%;
+aspect-ratio: 1919 / 941;
+object-fit: cover;
+border-radius: 12px;
+margin: 16px 0;
+background: #000;
+border: 1px solid rgba(0,224,255,0.3);
+box-shadow: 0 0 18px rgba(0,224,255,0.25);
+transition: transform 0.4s ease;
+}
+
+.projects .card:hover img {
+transform: scale(1.04);
+}
+
+/* clickable project card */
+
+.project-link{
+text-decoration:none;
+color:inherit;
+}
+
+.projects .card{
+cursor:pointer;
+position:relative;
+}
+
+.projects .card::after{
+content:"VIEW PROJECT";
+position:absolute;
+bottom:20px;
+right:20px;
+font-size:11px;
+letter-spacing:2px;
+color:#00e0ff;
+opacity:0;
+transition:0.4s;
+}
+
+.projects .card:hover::after{
+opacity:1;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#about">ABOUT</a>
+<a href="#skills">SKILLS</a>
+<a href="#projects">PROJECTS</a>
+</nav>
+
+<header>
+<div>
+<h1 id="typewriter"></h1>
+<h2><center>PORTFOLIO</center></h2>
+</div>
+</header>
+
+<section id="about">
+<h2>ABOUT ME</h2>
+
+<div class="about-container">
+
+<div class="about-text">
+<p>
+A graduate of Computer Engineering from Maranatha Christian University with a strong interest in design. 
+Skilled in 3D modeling, UI/UX design, front-end development, and website development.
+</p>
+</div>
+
+<div class="about-image">
+<div class="tech-frame">
+<img src="images/Gabriel Koesuma Salim.jpeg">
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="skills">
+<h2>SKILLS</h2>
+
+<div class="skills">
+
+<div class="card">
+<h3>WEBSITE DEV | FRONT END DEV</h3>
+<p>HTML</p>
+<p>CSS</p>
+<p>JavaScript</p>
+</div>
+
+<div class="card">
+<h3>3D MODELLING</h3>
+<p>Blender</p>
+</div>
+
+<div class="card">
+<h3>GRAPHIC DESIGN</h3>
+<p>Adobe Photoshop</p>
+<p>Adobe Illustrator</p>
+</div>
+
+<div class="card">
+<h3>UI / UX DESIGN</h3>
+<p>Wireframing</p>
+<p>User Flow</p>
+</div>
+
+</div>
+</section>
+
+<section id="projects">
+
+<h2>PROJECTS</h2>
+
+<div class="projects">
+
+<a href="project-virtual-drawing.html" class="project-link">
+<div class="card">
+<h3>Virtual Whiteboard Using Python</h3>
+<img src="images/TA.png">
+</div>
+</a>
+
+<a href="project-uiux.html" class="project-link">
+<div class="card">
+<h3>UI/UX Design Concept</h3>
+<img src="images/UI UX CONCEPT 2.png">
+</div>
+</a>
+
+<a href="project-3d.html" class="project-link">
+<div class="card">
+<h3>3D Visualization</h3>
+<img src="images/Satay Packaging 3D Model.png">
+</div>
+</a>
+
+<a href="project-velora.html" class="project-link">
+<div class="card">
+<h3>Velora Textile Website</h3>
+<img src="images/velora-preview.png">
+</div>
+</a>
+
+<a href="project-wheel-customizer.html" class="project-link">
+<div class="card">
+<h3>3D Racing Wheel Customizer</h3>
+<img src="images/wheel-page.png">
+</div>
+</a>
+
+</div>
+</section>
+
+<footer>
+© 2025 GABRIEL KOESUMA SALIM
+</footer>
+
+<script>
+
+const sections = document.querySelectorAll('section');
+
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if (entry.isIntersecting) entry.target.classList.add('show');
+});
+}, { threshold: 0.15 });
+
+sections.forEach(section => observer.observe(section));
+
+const text = "GABRIEL KOESUMA SALIM";
+let index = 0;
+
+function type() {
+if (index < text.length) {
+document.getElementById('typewriter').innerHTML += text.charAt(index);
+index++;
+setTimeout(type, 90);
+}
+}
+
+type();
+
+</script>
+
+</body>
+</html>
