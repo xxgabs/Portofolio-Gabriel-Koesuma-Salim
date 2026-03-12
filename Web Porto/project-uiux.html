@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>UI/UX Design Concept</title>
+
+<style>
+
+body{
+font-family:'Orbitron',sans-serif;
+background:#0b0f1a;
+color:white;
+padding:80px;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(0,224,255,0.08) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,224,255,0.08) 1px,transparent 1px);
+background-size:60px 60px;
+z-index:-1;
+}
+
+h1{
+color:#00e0ff;
+}
+
+h2{
+margin-top:40px;
+color:#00e0ff;
+}
+
+a{
+color:#00e0ff;
+text-decoration:none;
+}
+
+p{
+max-width:800px;
+line-height:1.7;
+}
+
+ul{
+margin-top:10px;
+line-height:1.7;
+}
+
+/* Gallery */
+
+.project-gallery{
+margin-top:80px;
+text-align:center;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+/* card */
+
+.gallery-item{
+background:rgba(20,30,60,0.8);
+border-radius:16px;
+padding:16px;
+border:1px solid rgba(0,224,255,0.3);
+transition:0.3s;
+}
+
+.gallery-item:hover{
+transform:translateY(-8px);
+box-shadow:0 0 20px rgba(0,224,255,0.4);
+}
+
+/* image container */
+
+.image-container{
+width:100%;
+height:220px;
+overflow:hidden;
+border-radius:10px;
+}
+
+/* image */
+
+.image-container img{
+width:100%;
+height:100%;
+object-fit:cover;
+cursor:pointer;
+transition:0.3s;
+}
+
+.image-container img:hover{
+transform:scale(1.05);
+}
+
+.gallery-item p{
+margin-top:12px;
+font-size:14px;
+color:#9fefff;
+}
+
+/* popup fullscreen */
+
+.image-popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.92);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.image-popup img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+}
+
+.close-popup{
+position:absolute;
+top:30px;
+right:40px;
+font-size:40px;
+cursor:pointer;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="index.html">← Back to Portfolio</a>
+
+<h1>Mobile Application UI/UX Design Concept</h1>
+
+<p>
+This project is a UI/UX design concept for a mobile application created using Figma. 
+The goal of this project was to design a clean, modern, and user-friendly interface 
+that focuses on intuitive navigation and strong visual consistency.
+</p>
+
+<h2>Design Tools</h2>
+
+<ul>
+<li>Figma</li>
+<li>Wireframing</li>
+<li>User Flow Mapping</li>
+<li>UI Prototyping</li>
+</ul>
+
+<h2>Design Process</h2>
+
+<p>
+The design began with planning the user journey and defining the main features 
+of the application. Wireframes were created to outline the structure of each screen. 
+After that, the final UI design was developed with a modern visual style 
+to improve user experience and usability.
+</p>
+
+<section class="project-gallery">
+
+<h2>Design Screens</h2>
+
+<div class="gallery-grid">
+
+<div class="gallery-item">
+<div class="image-container">
+<img src="images/login-page.png" class="preview-img">
+</div>
+<p>Login Page</p>
+</div>
+
+<div class="gallery-item">
+<div class="image-container">
+<img src="images/sign-up-page.png" class="preview-img">
+</div>
+<p>Sign Up Page</p>
+</div>
+
+<div class="gallery-item">
+<div class="image-container">
+<img src="images/user-flow.png" class="preview-img">
+</div>
+<p>User Flow</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- popup -->
+
+<div id="imagePopup" class="image-popup">
+<span class="close-popup">&times;</span>
+<img id="popupImage">
+</div>
+
+<script>
+
+const images=document.querySelectorAll(".preview-img")
+const popup=document.getElementById("imagePopup")
+const popupImg=document.getElementById("popupImage")
+const closeBtn=document.querySelector(".close-popup")
+
+images.forEach(img=>{
+img.addEventListener("click",()=>{
+popup.style.display="flex"
+popupImg.src=img.src
+})
+})
+
+closeBtn.addEventListener("click",()=>{
+popup.style.display="none"
+})
+
+popup.addEventListener("click",(e)=>{
+if(e.target!==popupImg){
+popup.style.display="none"
+}
+})
+
+</script>
+
+</body>
+</html>

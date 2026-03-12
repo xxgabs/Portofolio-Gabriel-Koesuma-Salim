@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Virtual Whiteboard - Python Project</title>
+
+<style>
+
+body{
+font-family:'Orbitron',sans-serif;
+background:#0b0f1a;
+color:white;
+padding:80px;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(0,224,255,0.08) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,224,255,0.08) 1px,transparent 1px);
+background-size:60px 60px;
+z-index:-1;
+}
+
+h1{
+color:#00e0ff;
+}
+
+h2{
+margin-top:40px;
+color:#00e0ff;
+}
+
+a{
+color:#00e0ff;
+text-decoration:none;
+}
+
+ul{
+margin-top:10px;
+line-height:1.7;
+}
+
+.project-gallery{
+margin-top:80px;
+text-align:center;
+}
+
+.project-gallery h2{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.project-gallery p{
+color:#00e0ff;
+margin-bottom:40px;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.gallery-item img{
+width:100%;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+transition:0.3s;
+cursor:pointer;
+}
+
+.gallery-item img:hover{
+transform:scale(1.05);
+}
+
+.gallery-item p{
+margin-top:10px;
+font-size:14px;
+}
+
+/* popup */
+
+.image-popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.image-popup img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+}
+
+.close-popup{
+position:absolute;
+top:30px;
+right:40px;
+font-size:40px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="index.html">← Back to Portfolio</a>
+
+<h1>Virtual Whiteboard Using Hand Tracking (Python)</h1>
+
+<p>
+Virtual Whiteboard is a digital drawing application that uses 
+hand gesture detection based on computer vision. Users can draw 
+in the air using their fingers without touching the screen.
+</p>
+
+<p>
+This project was developed using Python with MediaPipe to 
+detect hand positions in real-time and OpenCV to process 
+video input from the webcam.
+</p>
+
+<h2>Technology</h2>
+
+<ul>
+<li>Python</li>
+<li>OpenCV</li>
+<li>MediaPipe Hand Tracking</li>
+<li>NumPy</li>
+<li>OBS Studio Integration</li>
+</ul>
+
+<h2>Features</h2>
+
+<ul>
+<li>Real-time hand gesture detection</li>
+<li>Virtual drawing using index finger</li>
+<li>Color selection using gesture</li>
+<li>Erase drawing using open hand gesture</li>
+<li>Pause drawing gesture</li>
+<li>OBS integration for video conference</li>
+</ul>
+
+<h2>How It Works</h2>
+
+<p>
+The system detects the hand using MediaPipe. When the index finger 
+is raised, the system activates drawing mode. The movement of the 
+finger is then translated into lines on the virtual canvas.
+</p>
+
+<p>
+When all fingers are open, the system will enter erase mode to delete drawings on the canvas.
+</p>
+
+<!-- Gallery -->
+
+<section class="project-gallery">
+
+<h2>Application Preview</h2>
+
+<p>Screenshot of the Virtual Whiteboard Application.</p>
+
+<div class="gallery-grid">
+
+<div class="gallery-item">
+<img src="images/main_interface.jpg" class="preview-img">
+<p>Main Interface</p>
+</div>
+
+<div class="gallery-item">
+<img src="images/obs_interview.jpg" class="preview-img">
+<p>OBS Integration</p>
+</div>
+
+<div class="gallery-item">
+<img src="images/gmeet_preview.jpg" class="preview-img">
+<p>Preview on Google Meet Platform</p>
+</div>
+
+<div class="gallery-item">
+<img src="images/zoom_preview.jpg" class="preview-img">
+<p>Preview on Zoom Meeting</p>
+</div>
+
+<div class="gallery-item">
+<img src="images/TA.png" class="preview-img">
+<p>Drawing With Hand Gesture</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- popup -->
+
+<div id="imagePopup" class="image-popup">
+<span class="close-popup">&times;</span>
+<img id="popupImage">
+</div>
+
+<script>
+
+const images=document.querySelectorAll(".preview-img")
+const popup=document.getElementById("imagePopup")
+const popupImg=document.getElementById("popupImage")
+const closeBtn=document.querySelector(".close-popup")
+
+images.forEach(img=>{
+img.addEventListener("click",()=>{
+popup.style.display="flex"
+popupImg.src=img.src
+})
+})
+
+closeBtn.addEventListener("click",()=>{
+popup.style.display="none"
+})
+
+popup.addEventListener("click",(e)=>{
+if(e.target!==popupImg){
+popup.style.display="none"
+}
+})
+
+</script>
+
+</body>
+</html>

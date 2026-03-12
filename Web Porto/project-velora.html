@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Velora Textile Website</title>
+
+<style>
+
+body{
+font-family:'Orbitron', sans-serif;
+background:#0b0f1a;
+color:white;
+padding:80px;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(0,224,255,0.08) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,224,255,0.08) 1px, transparent 1px);
+background-size:60px 60px;
+z-index:-1;
+}
+
+h1{
+color:#00e0ff;
+}
+
+img{
+width:100%;
+max-width:900px;
+margin:30px 0;
+border-radius:10px;
+}
+
+a{
+color:#00e0ff;
+text-decoration:none;
+}
+
+/* ================= */
+/* Gallery Section */
+/* ================= */
+
+.project-gallery{
+margin-top:80px;
+text-align:center;
+}
+
+.project-gallery h2{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.project-gallery p{
+color:#00e0ff;
+margin-bottom:40px;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.gallery-item img{
+width:100%;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+transition:0.3s;
+cursor:pointer;
+}
+
+.gallery-item img:hover{
+transform:scale(1.05);
+}
+
+.gallery-item p{
+margin-top:10px;
+font-size:14px;
+color:#fff;
+}
+
+/* ================= */
+/* Image Popup */
+/* ================= */
+
+.image-popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.image-popup img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+animation:zoomIn 0.3s ease;
+}
+
+.close-popup{
+position:absolute;
+top:30px;
+right:40px;
+font-size:40px;
+color:white;
+cursor:pointer;
+}
+
+@keyframes zoomIn{
+from{
+transform:scale(0.8);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="index.html">← Back to Portfolio</a>
+
+<h1>Velora Textile Website (Personal Project)</h1>
+
+<p>
+Velora adalah konsep website textile modern yang menampilkan
+koleksi kain premium dengan desain luxury dan fitur interaktif.
+</p>
+
+<h2>Technology</h2>
+
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>Three.js</li>
+</ul>
+
+<h2>Features</h2>
+
+<ul>
+<li>Luxury UI design</li>
+<li>Fabric Collection Gallery</li>
+<li>3D Fabric Preview</li>
+<li>Fabric texture switcher</li>
+<li>Interactive animation</li>
+</ul>
+
+<!-- Website Pages Preview -->
+
+<section class="project-gallery">
+
+<h2>Website Pages</h2>
+
+<p>Overview of the Velora Fabric website interface across multiple pages.</p>
+
+<div class="gallery-grid">
+
+<div class="gallery-item">
+<img src="images/velora-preview.png" class="preview-img" alt="Velora Home Page">
+<p>Home Page</p>
+</div>
+
+<div class="gallery-item">
+<img src="images/velora-collection.png" class="preview-img" alt="Velora Product Page">
+<p>Our Collection</p>
+</div>
+
+<div class="gallery-item">
+<img src="images/velora-3dpreview.png" class="preview-img" alt="Velora 3D Preview">
+<p>3D Fabric Preview</p>
+</div>
+
+<div class="gallery-item">
+<img src="images/velora-story.png" class="preview-img" alt="Velora About Section">
+<p>About / Crafting Fabric With Passion</p>
+</div>
+
+<div class="gallery-item">
+<img src="images/velora-contact.png" class="preview-img" alt="Velora Contact Page">
+<p>Contact Page</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- Popup -->
+
+<div id="imagePopup" class="image-popup">
+<span class="close-popup">&times;</span>
+<img id="popupImage">
+</div>
+
+<script>
+
+/* popup system */
+
+const images = document.querySelectorAll(".preview-img")
+const popup = document.getElementById("imagePopup")
+const popupImg = document.getElementById("popupImage")
+const closeBtn = document.querySelector(".close-popup")
+
+images.forEach(img=>{
+img.addEventListener("click",()=>{
+popup.style.display="flex"
+popupImg.src=img.src
+})
+})
+
+closeBtn.addEventListener("click",()=>{
+popup.style.display="none"
+})
+
+popup.addEventListener("click",(e)=>{
+if(e.target !== popupImg){
+popup.style.display="none"
+}
+})
+
+</script>
+
+</body>
+</html>
