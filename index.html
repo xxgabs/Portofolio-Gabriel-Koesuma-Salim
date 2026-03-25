@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Gabriel Koesuma Salim | Portfolio</title>
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ED8QD15663"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-ED8QD15663');
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -312,42 +322,42 @@ Skilled in 3D modeling, UI/UX design, front-end development, and website develop
 
 <div class="projects">
 
-<a href="project-virtual-drawing.html" class="project-link">
+<a href="project-virtual-drawing.html" class="project-link" onclick="trackProject('Virtual Whiteboard')">
 <div class="card">
 <h3>Virtual Whiteboard Using Python</h3>
 <img src="images/TA.png">
 </div>
 </a>
 
-<a href="project-uiux.html" class="project-link">
+<a href="project-uiux.html" class="project-link" onclick="trackProject('UI UX Design')">
 <div class="card">
 <h3>UI/UX Design Concept</h3>
 <img src="images/UI UX CONCEPT 2.png">
 </div>
 </a>
 
-<a href="project-3d.html" class="project-link">
+<a href="project-3d.html" class="project-link" onclick="trackProject('3D Visualization')">
 <div class="card">
 <h3>3D Visualization</h3>
 <img src="images/Satay Packaging 3D Model.png">
 </div>
 </a>
 
-<a href="project-velora.html" class="project-link">
+<a href="project-velora.html" class="project-link" onclick="trackProject('Velora Website')">
 <div class="card">
 <h3>Velora Textile Website</h3>
 <img src="images/velora-preview.png">
 </div>
 </a>
 
-<a href="project-wheel-customizer.html" class="project-link">
+<a href="project-wheel-customizer.html" class="project-link" onclick="trackProject('Wheel Customizer')">
 <div class="card">
 <h3>3D Racing Wheel Customizer</h3>
 <img src="images/wheel-page.png">
 </div>
 </a>
 
-<a href="project-crypto-dashboard.html" class="project-link">
+<a href="project-crypto-dashboard.html" class="project-link" onclick="trackProject('Crypto Dashboard')">
 <div class="card">
 <h3>Crypto Dashboard with API Integration</h3>
 <img src="images/crypto-chart.png">
@@ -362,6 +372,39 @@ Skilled in 3D modeling, UI/UX design, front-end development, and website develop
 </footer>
 
 <script>
+/* =========================
+   GOOGLE ANALYTICS TRACKING
+========================= */
+
+// track project click
+function trackProject(name){
+  gtag('event', 'project_click', {
+    project_name: name
+  });
+}
+
+// track scroll 50%
+let scrollTracked = false;
+
+window.addEventListener("scroll", () => {
+  let scroll = (window.scrollY / document.body.scrollHeight) * 100;
+
+  if(scroll > 50 && !scrollTracked){
+    scrollTracked = true;
+    gtag('event', 'scroll_50_percent');
+  }
+});
+
+// track time spent
+let startTime = Date.now();
+
+window.addEventListener("beforeunload", () => {
+  let timeSpent = Math.floor((Date.now() - startTime) / 1000);
+
+  gtag('event', 'time_spent', {
+    seconds: timeSpent
+  });
+});
 
 const sections = document.querySelectorAll('section');
 
